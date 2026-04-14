@@ -38,8 +38,8 @@ export function AboutSection() {
               Results-driven engineer with experience across healthcare, sports,
               fintech, and education. Comfortable owning features end to end:
               React Native and React.js on the client, Node.js and Express for APIs,
-              PostgreSQL and MongoDB for data, and shipping to AWS EC2 with TLS and
-              a proper domain.
+              PostgreSQL and MongoDB for data, and shipping to production with TLS
+              and a proper domain.
             </p>
             <p>
               I also integrate Web3 flows — wallet connectivity, dApp UX, and

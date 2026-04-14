@@ -20,7 +20,7 @@ export const highlights = [
   "React.js & TypeScript",
   "Node.js & Express.js APIs",
   "PostgreSQL & MongoDB",
-  "AWS EC2, domains & HTTPS in production",
+  "Production deploys, domains & HTTPS",
   "Web3, dApps & wallet integrations",
 ];
 
@@ -50,7 +50,7 @@ export const skillGroups = [
   {
     title: "Cloud & delivery",
     items: [
-      "AWS EC2 deployment",
+      "Production hosting & release",
       "Custom domains & HTTPS",
       "Android (Play Console)",
       "iOS (App Store)",
@@ -103,9 +103,9 @@ export const projects = [
   {
     name: "Shopping Center (PERN)",
     description:
-      "Full-stack app from scratch to production: React, Node.js, Express, PostgreSQL. Deployed on AWS EC2 with a custom domain and HTTPS — end-to-end ownership of build, hosting, and release.",
+      "Full-stack app from scratch to production: React, Node.js, Express, PostgreSQL. Live with a custom domain and HTTPS — end-to-end ownership of build, hosting, and release.",
     href: "https://devusmanasghar.site/",
-    tags: ["React", "Node.js", "Express", "PostgreSQL", "EC2", "HTTPS"],
+    tags: ["React", "Node.js", "Express", "PostgreSQL", "HTTPS"],
     featured: true,
   },
   {

@@ -1,20 +1,20 @@
 # Portfolio — Usman Asghar
 
-Personal portfolio site: a single-page experience built with **Next.js 14** (App Router), **TypeScript**, and **Tailwind CSS**. Content lives in `lib/portfolio-data.ts`; UI sections are under `components/portfolio/`. Includes a downloadable PDF resume from `public/`.
+Personal portfolio: **Next.js 14** (App Router), **TypeScript**, **Tailwind CSS**, and **Framer Motion**. Copy lives in `lib/portfolio-data.ts`; UI is under `components/portfolio/`. The site is configured for **static export** (`output: "export"`).
+
+**`public/`** only needs `favicon.svg`, `usman-asghar-resume.pdf`, and any assets you add yourself.
 
 ## Stack
 
 - Next.js 14, React 18, TypeScript  
-- Tailwind CSS, Framer Motion  
-- next-themes (dark UI)  
-- Optional: Sentry (see `sentry.*.config.ts` if you enable error reporting)
+- Tailwind CSS, Framer Motion, Lucide icons  
 
 ## Features
 
 - Responsive layout with sticky navigation  
-- Hero, about, skills, experience, projects, and contact sections  
+- Hero, about, skills, experience, projects, contact  
 - Resume download (`/usman-asghar-resume.pdf`)  
-- Metadata and Open Graph tags in `app/layout.tsx`
+- Metadata in `app/layout.tsx`  
 
 ## Getting started
 
@@ -29,15 +29,20 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
-**Production build**
+**Static production build** (outputs `out/` — upload to any static host)
 
 ```bash
 npm run build
-npm start
+```
+
+Preview locally:
+
+```bash
+npx --yes serve out
 ```
 
 ## Customization
 
-- **Copy and links:** edit `lib/portfolio-data.ts`.  
-- **Resume:** replace `public/usman-asghar-resume.pdf` and update `resumePath` / `resumeDownloadFilename` in `portfolio-data` if filenames change.  
-- **Styling:** `app/globals.css`, `tailwind.config.ts`, and component classes in `components/portfolio/`.
+- **Copy and links:** `lib/portfolio-data.ts`  
+- **Resume:** replace `public/usman-asghar-resume.pdf` and adjust `resumePath` / `resumeDownloadFilename` if needed  
+- **Styling:** `app/globals.css`, `tailwind.config.ts`, `components/portfolio/`  
