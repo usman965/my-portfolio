@@ -11,6 +11,10 @@ import {
 import { personal, highlights } from "@/lib/portfolio-data";
 
 export function HeroSection() {
+  const gmailComposeUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
+    personal.email
+  )}`;
+
   return (
     <section
       id="top"
@@ -90,7 +94,7 @@ export function HeroSection() {
             <ArrowDownRight className="h-4 w-4" />
           </a>
           <a
-            href="#projects"
+            href="/projects"
             className="inline-flex items-center rounded-full border border-white/15 px-6 py-3 text-sm font-medium text-white hover:bg-white/5"
           >
             View work
@@ -123,7 +127,9 @@ export function HeroSection() {
               <Linkedin className="h-5 w-5" />
             </a>
             <a
-              href={`mailto:${personal.email}`}
+              href={gmailComposeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 text-zinc-400 hover:border-cyan-500/40 hover:text-cyan-400"
               aria-label="Email"
             >

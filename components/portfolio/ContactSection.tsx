@@ -5,6 +5,10 @@ import { Download, Github, Linkedin, Mail, MapPin, Phone } from "lucide-react";
 import { personal, education } from "@/lib/portfolio-data";
 
 export function ContactSection() {
+  const gmailComposeUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
+    personal.email
+  )}`;
+
   return (
     <section
       id="contact"
@@ -53,7 +57,9 @@ export function ContactSection() {
             <ul className="space-y-6">
               <li>
                 <a
-                  href={`mailto:${personal.email}`}
+                  href={gmailComposeUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex items-start gap-4 text-zinc-300 transition-colors hover:text-cyan-400"
                 >
                   <Mail className="mt-0.5 h-5 w-5 shrink-0 text-cyan-500/80" />

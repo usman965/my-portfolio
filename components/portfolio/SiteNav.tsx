@@ -27,10 +27,10 @@ export function SiteNav() {
     >
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 sm:px-8">
         <a
-          href="#top"
+          href="/"
           className="text-sm font-semibold tracking-tight text-white"
         >
-          {personal.name.split(" ")[0]}
+          {personal.name}
           <span className="text-cyan-400">.</span>
         </a>
 

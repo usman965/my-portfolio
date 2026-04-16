@@ -1,12 +1,25 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { ExternalLink } from "lucide-react";
 import { projects } from "@/lib/portfolio-data";
 
-export function ProjectsSection() {
+function getCtaLabel(project: { href?: string; tags: string[] }) {
+  const isMobileApp = project.tags.some((tag) => tag.toLowerCase() === "react native");
+  if (project.href?.includes("apps.apple.com")) return "View iOS app";
+  if (isMobileApp) return "View app";
+  return "Visit site";
+}
+
+type ProjectsSectionProps = {
+  showAll?: boolean;
+};
+
+export function ProjectsSection({ showAll = false }: ProjectsSectionProps) {
   const featured = projects.filter((p) => p.featured);
   const rest = projects.filter((p) => !p.featured);
+  const visibleRest = showAll ? rest : rest.slice(0, 4);
 
   return (
     <section id="projects" className="scroll-mt-24 px-5 sm:px-8 py-24 bg-[#050810]">
@@ -27,8 +40,9 @@ export function ProjectsSection() {
           transition={{ duration: 0.45, delay: 0.05 }}
           className="mt-4 max-w-2xl text-lg text-zinc-400"
         >
-          Selected work including a production PERN stack app, live on its own domain
-          with HTTPS.
+          {showAll
+            ? "A complete list of mobile, web, backend, and Web3 project work."
+            : "Selected project highlights. Open the full projects page to see all work."}
         </motion.p>
 
         {featured.length > 0 && (
@@ -68,7 +82,7 @@ export function ProjectsSection() {
                     </div>
                   </div>
                   <span className="inline-flex shrink-0 items-center gap-2 rounded-full border border-white/15 px-4 py-2 text-sm text-white group-hover:border-cyan-400/40 group-hover:text-cyan-300">
-                    Visit site
+                    {getCtaLabel(project)}
                     <ExternalLink className="h-4 w-4" />
                   </span>
                 </div>
@@ -78,7 +92,7 @@ export function ProjectsSection() {
         )}
 
         <div className="mt-14 grid gap-6 sm:grid-cols-2">
-          {rest.map((project, i) => (
+          {visibleRest.map((project, i) => (
             <motion.div
               key={project.name}
               initial={{ opacity: 0, y: 20 }}
@@ -87,7 +101,46 @@ export function ProjectsSection() {
               transition={{ duration: 0.4, delay: (i % 4) * 0.05 }}
               className="flex flex-col rounded-2xl border border-white/[0.08] bg-[#070b14] p-6"
             >
-              <h3 className="text-lg font-semibold text-white">{project.name}</h3>
+              <div className="flex flex-wrap items-start justify-between gap-3">
+                <h3 className="text-lg font-semibold text-white">{project.name}</h3>
+                {(project.iosHref || project.androidHref || project.href) && (
+                  <div className="flex flex-wrap justify-end gap-2">
+                    {project.iosHref && (
+                      <a
+                        href={project.iosHref}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 rounded-full border border-white/15 px-3 py-1 text-xs text-zinc-200 hover:border-cyan-400/40 hover:text-cyan-300"
+                      >
+                        iOS App Store
+                        <ExternalLink className="h-3 w-3" />
+                      </a>
+                    )}
+                    {project.androidHref && (
+                      <a
+                        href={project.androidHref}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 rounded-full border border-white/15 px-3 py-1 text-xs text-zinc-200 hover:border-cyan-400/40 hover:text-cyan-300"
+                      >
+                        Google Play
+                        <ExternalLink className="h-3 w-3" />
+                      </a>
+                    )}
+                    {!project.iosHref && !project.androidHref && project.href && (
+                      <a
+                        href={project.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 rounded-full border border-white/15 px-3 py-1 text-xs text-zinc-200 hover:border-cyan-400/40 hover:text-cyan-300"
+                      >
+                        Open project
+                        <ExternalLink className="h-3 w-3" />
+                      </a>
+                    )}
+                  </div>
+                )}
+              </div>
               <p className="mt-3 flex-1 text-sm text-zinc-400 leading-relaxed">
                 {project.description}
               </p>
@@ -104,6 +157,17 @@ export function ProjectsSection() {
             </motion.div>
           ))}
         </div>
+        {!showAll && rest.length > visibleRest.length && (
+          <div className="mt-10 flex justify-center">
+            <Link
+              href="/projects"
+              className="inline-flex items-center gap-2 rounded-full border border-white/15 px-5 py-2.5 text-sm text-zinc-200 hover:border-cyan-400/40 hover:text-cyan-300"
+            >
+              View all projects
+              <ExternalLink className="h-4 w-4" />
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   );
