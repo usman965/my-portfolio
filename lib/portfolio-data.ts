@@ -118,7 +118,7 @@ export const projects = [
     name: "Never Forget It",
     description:
       "Developed Never Forget It (NFI) end-to-end: a location-aware React Native app with subscription billing, a Node.js/Express backend, PostgreSQL database, and production deployment, delivering authentication, item tracking, and nearby-store notification features. iOS is live and Android is currently under review.",
-    href: "https://apps.apple.com/us/app/never-forget-it/id6758312855",
+    iosHref: "https://apps.apple.com/us/app/never-forget-it/id6758312855",
     tags: ["React Native", "Node.js", "Express", "PostgreSQL", "Subscriptions"],
     featured: true,
   },
@@ -132,7 +132,7 @@ export const projects = [
     name: "shop-demo",
     description:
       "Proof of Concept full-stack app built with React, Node.js, Express, and PostgreSQL. Live with a custom domain and HTTPS, with end-to-end ownership of build, hosting, and release.",
-    href: "https://devusmanasghar.site/",
+    href: "https://shop-demo.devusmanasghar.site/",
     tags: ["React", "Node.js", "Express", "PostgreSQL", "HTTPS"],
   },
   {

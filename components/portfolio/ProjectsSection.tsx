@@ -5,11 +5,56 @@ import Link from "next/link";
 import { ExternalLink } from "lucide-react";
 import { projects } from "@/lib/portfolio-data";
 
-function getCtaLabel(project: { href?: string; tags: string[] }) {
-  const isMobileApp = project.tags.some((tag) => tag.toLowerCase() === "react native");
-  if (project.href?.includes("apps.apple.com")) return "View iOS app";
-  if (isMobileApp) return "View app";
-  return "Visit site";
+type Project = {
+  name: string;
+  description: string;
+  tags: string[];
+  href?: string;
+  iosHref?: string;
+  androidHref?: string;
+  featured?: boolean;
+};
+
+function ProjectLinks({ project }: { project: Project }) {
+  if (!project.iosHref && !project.androidHref && !project.href) return null;
+
+  return (
+    <div className="flex flex-wrap justify-end gap-2">
+      {project.iosHref && (
+        <a
+          href={project.iosHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1 rounded-full border border-white/15 px-3 py-1 text-xs text-zinc-200 hover:border-cyan-400/40 hover:text-cyan-300"
+        >
+          iOS App Store
+          <ExternalLink className="h-3 w-3" />
+        </a>
+      )}
+      {project.androidHref && (
+        <a
+          href={project.androidHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1 rounded-full border border-white/15 px-3 py-1 text-xs text-zinc-200 hover:border-cyan-400/40 hover:text-cyan-300"
+        >
+          Google Play
+          <ExternalLink className="h-3 w-3" />
+        </a>
+      )}
+      {!project.iosHref && !project.androidHref && project.href && (
+        <a
+          href={project.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1 rounded-full border border-white/15 px-3 py-1 text-xs text-zinc-200 hover:border-cyan-400/40 hover:text-cyan-300"
+        >
+          Open project
+          <ExternalLink className="h-3 w-3" />
+        </a>
+      )}
+    </div>
+  );
 }
 
 type ProjectsSectionProps = {
@@ -48,11 +93,8 @@ export function ProjectsSection({ showAll = false }: ProjectsSectionProps) {
         {featured.length > 0 && (
           <div className="mt-12 space-y-6">
             {featured.map((project, i) => (
-              <motion.a
+              <motion.article
                 key={project.name}
-                href={project.href}
-                target="_blank"
-                rel="noopener noreferrer"
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
@@ -81,12 +123,9 @@ export function ProjectsSection({ showAll = false }: ProjectsSectionProps) {
                       ))}
                     </div>
                   </div>
-                  <span className="inline-flex shrink-0 items-center gap-2 rounded-full border border-white/15 px-4 py-2 text-sm text-white group-hover:border-cyan-400/40 group-hover:text-cyan-300">
-                    {getCtaLabel(project)}
-                    <ExternalLink className="h-4 w-4" />
-                  </span>
+                  <ProjectLinks project={project} />
                 </div>
-              </motion.a>
+              </motion.article>
             ))}
           </div>
         )}
@@ -103,43 +142,7 @@ export function ProjectsSection({ showAll = false }: ProjectsSectionProps) {
             >
               <div className="flex flex-wrap items-start justify-between gap-3">
                 <h3 className="text-lg font-semibold text-white">{project.name}</h3>
-                {(project.iosHref || project.androidHref || project.href) && (
-                  <div className="flex flex-wrap justify-end gap-2">
-                    {project.iosHref && (
-                      <a
-                        href={project.iosHref}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 rounded-full border border-white/15 px-3 py-1 text-xs text-zinc-200 hover:border-cyan-400/40 hover:text-cyan-300"
-                      >
-                        iOS App Store
-                        <ExternalLink className="h-3 w-3" />
-                      </a>
-                    )}
-                    {project.androidHref && (
-                      <a
-                        href={project.androidHref}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 rounded-full border border-white/15 px-3 py-1 text-xs text-zinc-200 hover:border-cyan-400/40 hover:text-cyan-300"
-                      >
-                        Google Play
-                        <ExternalLink className="h-3 w-3" />
-                      </a>
-                    )}
-                    {!project.iosHref && !project.androidHref && project.href && (
-                      <a
-                        href={project.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 rounded-full border border-white/15 px-3 py-1 text-xs text-zinc-200 hover:border-cyan-400/40 hover:text-cyan-300"
-                      >
-                        Open project
-                        <ExternalLink className="h-3 w-3" />
-                      </a>
-                    )}
-                  </div>
-                )}
+                <ProjectLinks project={project} />
               </div>
               <p className="mt-3 flex-1 text-sm text-zinc-400 leading-relaxed">
                 {project.description}
