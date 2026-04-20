@@ -9,6 +9,7 @@ import {
   Mail,
 } from "lucide-react";
 import { personal, highlights } from "@/lib/portfolio-data";
+import { ResumeDownloadLink } from "@/components/portfolio/ResumeDownloadLink";
 
 export function HeroSection() {
   const gmailComposeUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
@@ -99,14 +100,10 @@ export function HeroSection() {
           >
             View work
           </a>
-          <a
-            href={personal.resumePath}
-            download={personal.resumeDownloadFilename}
-            className="inline-flex items-center gap-2 rounded-full border border-white/15 px-6 py-3 text-sm font-medium text-white hover:bg-white/5"
-          >
+          <ResumeDownloadLink className="inline-flex items-center gap-2 rounded-full border border-white/15 px-6 py-3 text-sm font-medium text-white hover:bg-white/5">
             <Download className="h-4 w-4" />
             Resume
-          </a>
+          </ResumeDownloadLink>
           <div className="flex gap-2 sm:ml-2">
             <a
               href={personal.github}

@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Download, Github, Linkedin, Mail, MapPin, Phone } from "lucide-react";
 import { personal, education } from "@/lib/portfolio-data";
+import { ResumeDownloadLink } from "@/components/portfolio/ResumeDownloadLink";
 
 export function ContactSection() {
   const gmailComposeUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
@@ -80,14 +81,10 @@ export function ContactSection() {
                 {personal.location}
               </li>
             </ul>
-            <a
-              href={personal.resumePath}
-              download={personal.resumeDownloadFilename}
-              className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-xl border border-cyan-500/30 bg-cyan-500/10 px-4 py-3 text-sm font-medium text-cyan-200 transition-colors hover:border-cyan-400/50 hover:bg-cyan-500/15 sm:w-auto"
-            >
+            <ResumeDownloadLink className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-xl border border-cyan-500/30 bg-cyan-500/10 px-4 py-3 text-sm font-medium text-cyan-200 transition-colors hover:border-cyan-400/50 hover:bg-cyan-500/15 sm:w-auto">
               <Download className="h-4 w-4" />
               Download resume (PDF)
-            </a>
+            </ResumeDownloadLink>
             <div className="mt-6 flex gap-3">
               <a
                 href={personal.github}

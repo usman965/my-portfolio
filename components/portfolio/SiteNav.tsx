@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { personal, navLinks } from "@/lib/portfolio-data";
+import { ResumeDownloadLink } from "@/components/portfolio/ResumeDownloadLink";
 import { cn } from "@/lib/utils";
 
 export function SiteNav() {
@@ -44,13 +45,9 @@ export function SiteNav() {
               {link.label}
             </a>
           ))}
-          <a
-            href={personal.resumePath}
-            download={personal.resumeDownloadFilename}
-            className="text-sm font-medium text-cyan-400/90 transition-colors hover:text-cyan-300"
-          >
+          <ResumeDownloadLink className="text-sm font-medium text-cyan-400/90 transition-colors hover:text-cyan-300">
             Resume
-          </a>
+          </ResumeDownloadLink>
         </nav>
 
         <button
@@ -82,14 +79,12 @@ export function SiteNav() {
                   {link.label}
                 </a>
               ))}
-              <a
-                href={personal.resumePath}
-                download={personal.resumeDownloadFilename}
+              <ResumeDownloadLink
                 className="rounded-lg px-3 py-2.5 text-sm font-medium text-cyan-400 hover:bg-white/5"
-                onClick={() => setOpen(false)}
+                onNavigate={() => setOpen(false)}
               >
                 Resume (PDF)
-              </a>
+              </ResumeDownloadLink>
             </nav>
           </motion.div>
         )}

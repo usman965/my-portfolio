@@ -11,7 +11,7 @@ export const personal = {
   linkedin: "https://www.linkedin.com/in/usman965",
   github: "https://github.com/usman965",
   /** Served from /public — update the file there when your CV changes */
-  resumePath: "/usman-asghar-resume.pdf",
+  resumePath: "/Usman-Asghar-Resume.pdf",
   resumeDownloadFilename: "Usman-Asghar-Resume.pdf",
 };
 

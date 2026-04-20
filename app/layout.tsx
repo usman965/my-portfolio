@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description:
     "Portfolio of Usman Asghar: React Native, React.js, Node.js, Express, PostgreSQL, MongoDB, production hosting, HTTPS, and Web3 integrations.",
   icons: {
-    icon: "/favicon.svg",
+    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
   },
   openGraph: {
     title: "Usman Asghar — Software Engineer",
